@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace BlazorPanzoom
-{
-    public static class ElementReferenceExtensions
-    {
-        private static ElementReference DefaultElementReference => default;
+namespace BlazorPanzoom.Extensions;
 
-        public static bool IsDefault(this ElementReference elementReference) =>
-            elementReference.Equals(DefaultElementReference);
-    }
+public static class ElementReferenceExtensions
+{
+	private static ElementReference DefaultElementReference => default;
+
+	public static bool IsDefault(this ElementReference elementReference)
+	{
+		return elementReference.Equals(DefaultElementReference);
+	}
 }

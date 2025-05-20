@@ -1,10 +1,9 @@
-﻿namespace BlazorPanzoom
+﻿namespace BlazorPanzoom.Events;
+
+public interface IBlazorPanzoomEvent
 {
-    public interface IBlazorPanzoomEvent
-    {
-    }
-
-    public delegate void BlazorPanzoomEventHandler<in T>(T args) where T : IBlazorPanzoomEvent;
-
-    public delegate void BlazorPanzoomEventHandler();
 }
+
+public delegate void BlazorPanzoomEventHandler<in T>(T args) where T : IBlazorPanzoomEvent;
+
+public delegate void BlazorPanzoomEventHandler();

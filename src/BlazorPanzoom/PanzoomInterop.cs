@@ -1,169 +1,240 @@
 ﻿using System;
 using System.Threading.Tasks;
+using BlazorPanzoom.Events;
+using BlazorPanzoom.Extensions;
+using BlazorPanzoom.Options;
 using Microsoft.JSInterop;
 
-namespace BlazorPanzoom
+namespace BlazorPanzoom;
+
+public class PanzoomInterop : IPanzoom, IAsyncDisposable
 {
-    public class PanzoomInterop : IPanzoom, IAsyncDisposable
-    {
-        private readonly IJSObjectReference _jsPanzoomReference;
+	public IJSObjectReference JSPanzoomReference { get; }
 
-        internal PanzoomInterop(IJSObjectReference jsPanzoomReference)
-        {
-            _jsPanzoomReference = jsPanzoomReference;
-        }
+	public event BlazorPanzoomEventHandler<CustomWheelEventArgs>? OnCustomWheel;
+	public event BlazorPanzoomEventHandler<SetTransformEventArgs>? OnSetTransform;
+	public event BlazorPanzoomEventHandler? OnDispose;
 
-        public IJSObjectReference JSPanzoomReference => _jsPanzoomReference;
+	private bool _isDisposed;
 
+	internal PanzoomInterop(IJSObjectReference jsPanzoomReference)
+	{
+		JSPanzoomReference = jsPanzoomReference;
+	}
 
-        public async ValueTask DisposeAsync()
-        {
-            GC.SuppressFinalize(this);
-            await OnDispose.InvokeAsync();
-            await DestroyAsync();
-            await _jsPanzoomReference.DisposeAsync();
-            DisposeAllEventHandlers();
-        }
+	public async ValueTask DisposeAsync()
+	{
+		if (_isDisposed)
+		{
+			return;
+		}
 
-        public async ValueTask PanAsync(double x, double y, IPanOnlyOptions? overridenOptions = default)
-        {
-            await _jsPanzoomReference.InvokeVoidAsync("pan", x, y, overridenOptions);
-        }
+		_isDisposed = true;
 
-        public async ValueTask ZoomInAsync(IZoomOnlyOptions? options = default)
-        {
-            await _jsPanzoomReference.InvokeVoidAsync("zoomIn");
-        }
+		GC.SuppressFinalize(this);
+		
+		// 1. Invoke C# event handler (less likely to fail with JSObjectReference error, but good practice to protect)
+		try
+		{
+			if (OnDispose != null)
+			{
+				await OnDispose.InvokeAsync();
+			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Error invoking OnDispose event: {ex.Message}");
+		}
 
-        public async ValueTask ZoomOutAsync(IZoomOnlyOptions? options = default)
-        {
-            await _jsPanzoomReference.InvokeVoidAsync("zoomOut");
-        }
+		// 2. Attempt to destroy the JS-side panzoom instance
+		await DestroyAsync();
 
-        public async ValueTask ZoomAsync(double toScale, IZoomOnlyOptions? options = default)
-        {
-            await _jsPanzoomReference.InvokeVoidAsync("zoom", toScale);
-        }
+		// 3. Attempt to dispose the JSObjectReference itself
+		try
+		{
+			await JSPanzoomReference.DisposeAsync();
+		}
+		catch (ObjectDisposedException)
+		{
+			Console.WriteLine("PanzoomInterop: _jsPanzoomReference was already disposed when DisposeAsync tried to dispose it. Ignoring.");
+		}
+		catch (JSDisconnectedException)
+		{
+			Console.WriteLine("PanzoomInterop: JS disconnected when DisposeAsync tried to dispose _jsPanzoomReference. Ignoring.");
+		}
+		catch (InvalidOperationException ex) when (ex.Message.Contains("JavaScript interop calls cannot be issued"))
+		{
+			Console.WriteLine($"PanzoomInterop: JS interop unavailable during _jsPanzoomReference.DisposeAsync: {ex.Message}. Ignoring.");
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"PanzoomInterop: Unexpected error disposing _jsPanzoomReference: {ex.Message}");
+		}
 
-        public async ValueTask ZoomToPointAsync(double toScale, double clientX, double clientY,
-            IZoomOnlyOptions? overridenZoomOptions = default)
-        {
-            await _jsPanzoomReference.InvokeVoidAsync("zoomToPoint", toScale, new PointArgs(clientX, clientY),
-                overridenZoomOptions);
-        }
+		// 4. Clean up C# event handlers (safe operation)
+		DisposeAllEventHandlers();
+	}
 
-        public async ValueTask ZoomWithWheelAsync(CustomWheelEventArgs args,
-            IZoomOnlyOptions? overridenOptions = default)
-        {
-            var currentOptions = await GetOptionsAsync();
-            var currentScale = await GetScaleAsync();
-            var minScale = currentOptions.GetMinScaleOrDefault();
-            var maxScale = currentOptions.GetMaxScaleOrDefault();
-            var step = currentOptions.GetStepOrDefault();
-            if (overridenOptions is not null)
-            {
-                minScale = overridenOptions.GetMinScaleOrDefault(minScale);
-                maxScale = overridenOptions.GetMaxScaleOrDefault(maxScale);
-                step = overridenOptions.GetStepOrDefault(step);
-            }
+	public async ValueTask PanAsync(double x, double y, IPanOnlyOptions? overridenOptions = default)
+	{
+		await JSPanzoomReference.InvokeVoidAsync("pan", x, y, overridenOptions);
+	}
 
-            var delta = args.DeltaY == 0 && args.DeltaX != 0 ? args.DeltaX : args.DeltaY;
-            var direction = delta < 0 ? 1 : -1;
-            var calculatedScale = currentScale * Math.Exp(direction * step / 3);
-            var constrainedScale = Math.Min(Math.Max(calculatedScale, minScale), maxScale);
-            await ZoomToPointAsync(constrainedScale, args.ClientX, args.ClientY, overridenOptions);
-        }
+	public async ValueTask ZoomInAsync(IZoomOnlyOptions? options = default)
+	{
+		await JSPanzoomReference.InvokeVoidAsync("zoomIn");
+	}
 
-        public async ValueTask ResetAsync(PanzoomOptions? options = default)
-        {
-            await _jsPanzoomReference.InvokeVoidAsync("reset");
-        }
+	public async ValueTask ZoomOutAsync(IZoomOnlyOptions? options = default)
+	{
+		await JSPanzoomReference.InvokeVoidAsync("zoomOut");
+	}
 
-        public async ValueTask SetOptionsAsync(PanzoomOptions options)
-        {
-            // TODO not allowed to set Force option
-            await _jsPanzoomReference.InvokeVoidAsync("setOptions", options);
-        }
+	public async ValueTask ZoomAsync(double toScale, IZoomOnlyOptions? options = default)
+	{
+		await JSPanzoomReference.InvokeVoidAsync("zoom", toScale);
+	}
 
-        public async ValueTask<PanzoomOptions> GetOptionsAsync()
-        {
-            return await _jsPanzoomReference.InvokeAsync<PanzoomOptions>("getOptions");
-        }
+	public async ValueTask ZoomToPointAsync(double toScale, double clientX, double clientY, IZoomOnlyOptions? overridenZoomOptions = default)
+	{
+		await JSPanzoomReference.InvokeVoidAsync("zoomToPoint", toScale, new PointArgs(clientX, clientY),
+			overridenZoomOptions);
+	}
 
-        public async ValueTask<double> GetScaleAsync()
-        {
-            return await _jsPanzoomReference.InvokeAsync<double>("getScale");
-        }
+	public async ValueTask ZoomWithWheelAsync(CustomWheelEventArgs args, IZoomOnlyOptions? overridenOptions = default)
+	{
+		PanzoomOptions currentOptions = await GetOptionsAsync();
+		double currentScale = await GetScaleAsync();
+		double minScale = currentOptions.GetMinScaleOrDefault();
+		double maxScale = currentOptions.GetMaxScaleOrDefault();
+		double step = currentOptions.GetStepOrDefault();
+		if (overridenOptions is not null)
+		{
+			minScale = overridenOptions.GetMinScaleOrDefault(minScale);
+			maxScale = overridenOptions.GetMaxScaleOrDefault(maxScale);
+			step = overridenOptions.GetStepOrDefault(step);
+		}
 
-        public async ValueTask<ReadOnlyFocalPoint> GetPanAsync()
-        {
-            return await _jsPanzoomReference.InvokeAsync<ReadOnlyFocalPoint>("getPan");
-        }
+		double delta = args.DeltaY == 0 && args.DeltaX != 0 ? args.DeltaX : args.DeltaY;
+		int direction = delta < 0 ? 1 : -1;
+		double calculatedScale = currentScale * Math.Exp(direction * step / 3);
+		double constrainedScale = Math.Min(Math.Max(calculatedScale, minScale), maxScale);
+		await ZoomToPointAsync(constrainedScale, args.ClientX, args.ClientY, overridenOptions);
+	}
 
-        public async ValueTask ResetStyleAsync()
-        {
-            await _jsPanzoomReference.InvokeVoidAsync("resetStyle");
-        }
+	public async ValueTask ResetAsync(PanzoomOptions? options = default)
+	{
+		await JSPanzoomReference.InvokeVoidAsync("reset");
+	}
 
-        public async ValueTask SetStyleAsync(string name, string value)
-        {
-            await _jsPanzoomReference.InvokeVoidAsync("setStyle", name, value);
-        }
+	public async ValueTask SetOptionsAsync(PanzoomOptions options)
+	{
+		// TODO not allowed to set Force option
+		await JSPanzoomReference.InvokeVoidAsync("setOptions", options);
+	}
 
-        public async ValueTask DestroyAsync()
-        {
-            await _jsPanzoomReference.InvokeVoidAsync("destroy");
-        }
+	public async ValueTask<PanzoomOptions> GetOptionsAsync()
+	{
+		return await JSPanzoomReference.InvokeAsync<PanzoomOptions>("getOptions");
+	}
 
-        public event BlazorPanzoomEventHandler<CustomWheelEventArgs>? OnCustomWheel;
-        public event BlazorPanzoomEventHandler<SetTransformEventArgs>? OnSetTransform;
-        public event BlazorPanzoomEventHandler? OnDispose;
+	public async ValueTask<double> GetScaleAsync()
+	{
+		return await JSPanzoomReference.InvokeAsync<double>("getScale");
+	}
 
-        [JSInvokable]
-        public async ValueTask OnCustomWheelEvent(CustomWheelEventArgs args)
-        {
-            await OnCustomWheel.InvokeAsync(args);
-        }
+	public async ValueTask<ReadOnlyFocalPoint> GetPanAsync()
+	{
+		return await JSPanzoomReference.InvokeAsync<ReadOnlyFocalPoint>("getPan");
+	}
 
-        [JSInvokable]
-        public async ValueTask OnSetTransformEvent(SetTransformEventArgs args)
-        {
-            await OnSetTransform.InvokeAsync(args);
-        }
+	public async ValueTask ResetStyleAsync()
+	{
+		await JSPanzoomReference.InvokeVoidAsync("resetStyle");
+	}
 
-        private void DisposeAllEventHandlers()
-        {
-            OnCustomWheel = null;
-            OnSetTransform = null;
-            OnDispose = null;
-        }
+	public async ValueTask SetStyleAsync(string name, string value)
+	{
+		await JSPanzoomReference.InvokeVoidAsync("setStyle", name, value);
+	}
 
-        protected bool Equals(PanzoomInterop other)
-        {
-            return _jsPanzoomReference.Equals(other._jsPanzoomReference);
-        }
+	public async ValueTask DestroyAsync()
+	{
+		if (_isDisposed)
+		{
+			return;
+		}
 
-        public override bool Equals(object? obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((PanzoomInterop) obj);
-        }
+		try
+		{
+			await JSPanzoomReference.InvokeVoidAsync("destroy");
+		}
+		catch (ObjectDisposedException)
+		{
+			// The JSObjectReference was already disposed. This is okay during cleanup.
+			_isDisposed = true;
+		}
+		catch (JSDisconnectedException)
+		{
+			// The JS runtime is unavailable (e.g., SignalR connection lost).
+			_isDisposed = true;
+		}
+		catch (InvalidOperationException ex) when (ex.Message.Contains("JavaScript interop calls cannot be issued"))
+		{
+			// Another symptom of disconnection or prerendering disposal issues.
+			_isDisposed = true;
+		}
+		catch (Exception ex)
+		{
+			// Catch unexpected errors during the destroy call
+			_isDisposed = true;
+		}
+	}
 
-        public override int GetHashCode()
-        {
-            return _jsPanzoomReference.GetHashCode();
-        }
+	[JSInvokable]
+	public async ValueTask OnCustomWheelEvent(CustomWheelEventArgs args)
+	{
+		await OnCustomWheel.InvokeAsync(args);
+	}
 
-        public static bool operator ==(PanzoomInterop? left, PanzoomInterop? right)
-        {
-            return Equals(left, right);
-        }
+	[JSInvokable]
+	public async ValueTask OnSetTransformEvent(SetTransformEventArgs args)
+	{
+		await OnSetTransform.InvokeAsync(args);
+	}
 
-        public static bool operator !=(PanzoomInterop? left, PanzoomInterop? right)
-        {
-            return !Equals(left, right);
-        }
-    }
+	private void DisposeAllEventHandlers()
+	{
+		OnCustomWheel = null;
+		OnSetTransform = null;
+		OnDispose = null;
+	}
+
+	protected bool Equals(PanzoomInterop other)
+	{
+		return JSPanzoomReference.Equals(other.JSPanzoomReference);
+	}
+
+	public override bool Equals(object? obj)
+	{
+		if (ReferenceEquals(null, obj)) return false;
+		if (ReferenceEquals(this, obj)) return true;
+		if (obj.GetType() != GetType()) return false;
+		return Equals((PanzoomInterop)obj);
+	}
+
+	public override int GetHashCode()
+	{
+		return JSPanzoomReference.GetHashCode();
+	}
+
+	public static bool operator ==(PanzoomInterop? left, PanzoomInterop? right)
+	{
+		return Equals(left, right);
+	}
+
+	public static bool operator !=(PanzoomInterop? left, PanzoomInterop? right)
+	{
+		return !Equals(left, right);
+	}
 }

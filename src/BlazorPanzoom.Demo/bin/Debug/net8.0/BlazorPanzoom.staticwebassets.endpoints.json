@@ -1,0 +1,252 @@
+{
+  "Version": 1,
+  "ManifestType": "Build",
+  "Endpoints": [
+    {
+      "Route": "blazorpanzoom.7ykps8xnsp.js",
+      "AssetFile": "blazorpanzoom.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3800"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"T8I9bBmiEKke66iJ2ZisUbHh+xNWMBVSOFPQc0Ha13M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 09:57:07 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7ykps8xnsp"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-T8I9bBmiEKke66iJ2ZisUbHh+xNWMBVSOFPQc0Ha13M="
+        },
+        {
+          "Name": "label",
+          "Value": "blazorpanzoom.js"
+        }
+      ]
+    },
+    {
+      "Route": "blazorpanzoom.js",
+      "AssetFile": "blazorpanzoom.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3800"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"T8I9bBmiEKke66iJ2ZisUbHh+xNWMBVSOFPQc0Ha13M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 09:57:07 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-T8I9bBmiEKke66iJ2ZisUbHh+xNWMBVSOFPQc0Ha13M="
+        }
+      ]
+    },
+    {
+      "Route": "panzoom-LICENSE.9dzelrgjvq.txt",
+      "AssetFile": "panzoom-LICENSE.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1077"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cxR1PSzejkngUZrON6Ild5IuiTvUg0DbCkn2qyWb0gc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 09:40:43 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9dzelrgjvq"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cxR1PSzejkngUZrON6Ild5IuiTvUg0DbCkn2qyWb0gc="
+        },
+        {
+          "Name": "label",
+          "Value": "panzoom-LICENSE.txt"
+        }
+      ]
+    },
+    {
+      "Route": "panzoom-LICENSE.txt",
+      "AssetFile": "panzoom-LICENSE.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1077"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cxR1PSzejkngUZrON6Ild5IuiTvUg0DbCkn2qyWb0gc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 09:40:43 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cxR1PSzejkngUZrON6Ild5IuiTvUg0DbCkn2qyWb0gc="
+        }
+      ]
+    },
+    {
+      "Route": "panzoom.min.js",
+      "AssetFile": "panzoom.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10382"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lg8Yck2itE5fsnetXI9lgoJajk7Cm/gAKL7S66+1Hsg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 10:24:59 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lg8Yck2itE5fsnetXI9lgoJajk7Cm/gAKL7S66+1Hsg="
+        }
+      ]
+    },
+    {
+      "Route": "panzoom.min.m4jvxj3qy6.js",
+      "AssetFile": "panzoom.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10382"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lg8Yck2itE5fsnetXI9lgoJajk7Cm/gAKL7S66+1Hsg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 10:24:59 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "m4jvxj3qy6"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-lg8Yck2itE5fsnetXI9lgoJajk7Cm/gAKL7S66+1Hsg="
+        },
+        {
+          "Name": "label",
+          "Value": "panzoom.min.js"
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,7 @@
 ﻿@page "/inception"
+@using BlazorPanzoom.Components
+@using BlazorPanzoom.Events
+@using BlazorPanzoom.Options
 
 <Demo Title="A Panzoom instance within another Panzoom instance" DemoType="GetType()">
     <div class="buttons">
@@ -37,7 +40,7 @@
 
     private async Task SetTransformCustom(SetTransformEventArgs eventArgs)
     {
-        var parentScale = await _panzoom.GetScaleAsync();
+        double parentScale = await _panzoom.GetScaleAsync();
         await _panzoom2.SetStyleAsync(
             "transform",
             $"scale({eventArgs.Scale}) translate({eventArgs.X / parentScale}px, {eventArgs.Y / parentScale}px)");
@@ -61,7 +64,7 @@
 
     private async Task AdjustScale(bool zoomIn)
     {
-        var oldScale = await _panzoom.GetScaleAsync();
+        double oldScale = await _panzoom.GetScaleAsync();
 
         if (zoomIn)
         {
@@ -71,8 +74,8 @@
         {
             await _panzoom.ZoomOutAsync();
         }
-        var newScale = await _panzoom.GetScaleAsync();
-        var pan = await _panzoom2.GetPanAsync();
+        double newScale = await _panzoom.GetScaleAsync();
+        ReadOnlyFocalPoint pan = await _panzoom2.GetPanAsync();
         await _panzoom2.PanAsync((pan.X / oldScale) * newScale, (pan.Y / oldScale) * newScale, new PanzoomOptions {Animate = true});
     }
 

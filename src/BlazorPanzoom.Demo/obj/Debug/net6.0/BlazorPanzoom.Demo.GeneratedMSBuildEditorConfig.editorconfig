@@ -1,0 +1,81 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = BlazorPanzoom.Demo
+build_property.RootNamespace = BlazorPanzoom.Demo
+build_property.ProjectDir = C:\Git\BlazorPanzoom\src\BlazorPanzoom.Demo\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Git\BlazorPanzoom\src\BlazorPanzoom.Demo
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 6.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Pages/Demos/ContainInsideDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVtb3NcQ29udGFpbkluc2lkZURlbW8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Pages/Demos/ContainOutsideDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVtb3NcQ29udGFpbk91dHNpZGVEZW1vLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Pages/Demos/DisableYAxisDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVtb3NcRGlzYWJsZVlBeGlzRGVtby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Pages/Demos/ExcludeDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVtb3NcRXhjbHVkZURlbW8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Pages/Demos/FocalDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVtb3NcRm9jYWxEZW1vLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Pages/Demos/PanzoomWithinPanzoom.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVtb3NcUGFuem9vbVdpdGhpblBhbnpvb20ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Pages/Demos/StandardDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVtb3NcU3RhbmRhcmREZW1vLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Pages/Demos/SVGDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVtb3NcU1ZHRGVtby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Pages/Demos/TransformDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVtb3NcVHJhbnNmb3JtRGVtby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Shared/Demo.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXERlbW8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-j3mllq7ku4
+
+[C:/Git/BlazorPanzoom/src/BlazorPanzoom.Demo/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-9tk2afs66b

@@ -1,9 +1,8 @@
-﻿namespace BlazorPanzoom
+﻿namespace BlazorPanzoom;
+
+public enum WheelMode
 {
-    public enum WheelMode
-    {
-        ZoomWithWheel,
-        Custom,
-        None
-    }
+	ZoomWithWheel,
+	Custom,
+	None
 }

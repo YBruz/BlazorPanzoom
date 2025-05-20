@@ -19,7 +19,7 @@ namespace BlazorPanzoom.Demo.Shared
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {
-            var hasDemoType = parameters.TryGetValue<Type>(nameof(DemoType), out _);
+            bool hasDemoType = parameters.TryGetValue<Type>(nameof(DemoType), out _);
             if (!hasDemoType)
             {
                 throw new ArgumentNullException(nameof(DemoType), "Must specify DemoType!");

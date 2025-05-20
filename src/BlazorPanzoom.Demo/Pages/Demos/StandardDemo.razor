@@ -1,4 +1,6 @@
 ﻿@page "/"
+@using BlazorPanzoom.Components
+@using BlazorPanzoom.Options
 
 <Demo Title="Panning and zooming" DemoType="GetType()">
     <div class="buttons">
@@ -67,7 +69,7 @@
 
     private async Task UpdateSlider()
     {
-        var scale = await _panzoom.GetScaleAsync();
+        double scale = await _panzoom.GetScaleAsync();
         _rangeValue = scale;
     }
 

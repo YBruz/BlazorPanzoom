@@ -1,4 +1,7 @@
 ﻿@page "/transform"
+@using BlazorPanzoom.Components
+@using BlazorPanzoom.Events
+@using BlazorPanzoom
 
 <Demo Title="Adding on matrix functions to the transform" DemoType="GetType()">
     <div class="panzoom-parent">
@@ -28,5 +31,4 @@
     {
         await _panzoom.SetStyleAsync("transform", $"rotate({eventArgs.X / 20}deg) scale({eventArgs.Scale}) translate({eventArgs.X}px, {eventArgs.Y}px)");
     }
-
 }

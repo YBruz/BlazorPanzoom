@@ -1,0 +1,101 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorPanzoom.Demo.styles.css",
+      "PackagePath": "staticwebassets\\BlazorPanzoom.Demo.styles.css"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\404.html",
+      "PackagePath": "staticwebassets\\404.html"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\awesome_tiger.svg",
+      "PackagePath": "staticwebassets\\awesome_tiger.svg"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\open-iconic\\README.md",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\README.md"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Git\\BlazorPanzoom\\src\\BlazorPanzoom.Demo\\wwwroot\\target.png",
+      "PackagePath": "staticwebassets\\target.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BlazorPanzoom.Demo.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BlazorPanzoom.Demo.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BlazorPanzoom.Demo.props",
+      "PackagePath": "build\\BlazorPanzoom.Demo.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BlazorPanzoom.Demo.props",
+      "PackagePath": "buildMultiTargeting\\BlazorPanzoom.Demo.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BlazorPanzoom.Demo.props",
+      "PackagePath": "buildTransitive\\BlazorPanzoom.Demo.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
